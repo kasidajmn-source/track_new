@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>กำลังลงชื่อเข้าใช้…</title>
+  <style>body{font:16px system-ui,sans-serif;display:grid;place-items:center;min-height:100vh;margin:0;color:#46516A;background:#E7EAE5}</style>
+</head>
+<body>
+  <p id="m">ลงชื่อเข้าใช้เรียบร้อย กำลังกลับไปที่ระบบ…</p>
+  <script>
+    // หน้านี้รับผลการลงชื่อเข้าใช้จาก Microsoft แล้วส่งกลับไปที่หน้าต่างหลักของระบบ
+    (function () {
+      var msg = { type: 'pt-auth', url: location.href };
+      try { new BroadcastChannel('pt-auth').postMessage(msg); } catch (e) {}
+      try { localStorage.setItem('pt.auth.result', JSON.stringify({ url: location.href, t: Date.now() })); } catch (e) {}
+      try { if (window.opener) window.opener.postMessage(msg, location.origin); } catch (e) {}
+      setTimeout(function () {
+        window.close();
+        document.getElementById('m').textContent = 'ปิดหน้าต่างนี้แล้วกลับไปที่ระบบได้เลย';
+      }, 300);
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+{
+  "name": "ติดตามโครงการ",
+  "short_name": "ติดตามโครงการ",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#E7EAE5",
+  "theme_color": "#172238",
+  "icons": [{ "src": "assets/favicon.svg", "sizes": "any", "type": "image/svg+xml" }]
+}
